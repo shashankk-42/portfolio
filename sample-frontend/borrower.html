@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskForge - Submit Job</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* General Styles - Light Theme Conversion (Bright Cyan/Purple) */
+        :root {
+            --bg-color: #F5F7FA;
+            /* Soft Light Gray/Off-White for background */
+            --card-bg: #FFFFFF;
+            /* Pure White for cards/containers */
+            --text-color: #1E293B;
+            /* Deep Dark Slate Blue for readability */
+            --accent-color: #06B6D4;
+            /* Bright Cyan/Teal for main accents */
+            --accent-secondary: #8B5CF6;
+            /* Vibrant Purple/Violet for secondary accents */
+            --accent-hover: #22D3EE;
+            /* Lighter Cyan for hover states */
+            --success-color: #10B981;
+            /* Emerald Green for success */
+            --danger-color: #EF4444;
+            /* Bright Red for danger */
+            --border-color: #CBD5E1;
+            /* Light Slate Gray border */
+            --input-bg: #E2E8F0;
+            /* Light Gray-Blue for inputs/subtle backgrounds */
+            --dark-section-bg: #000000;
+            /* NEW: Dark/Black background for alternating sections */
+            --dark-section-text: #FFFFFF;
+            /* NEW: White text for dark sections */
+            --dark-section-accent: #22D3EE;
+            /* NEW: Cyan accent on dark sections */
+            --status-running: #22D3EE;
+            /* NEW */
+            --status-complete: var(--success-color);
+            /* NEW */
+            --status-pending: #FBBF24;
+            /* NEW */
+            --navbar-height: 56px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar - High-Contrast Redesign for Light Theme */
+        .navbar {
+            background: #000000;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.5);
+            backdrop-filter: blur(5px);
+            height: var(--navbar-height);
+        }
+
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306B6D4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2z'/%3E%3Cpath d='M10 9l-3 5h6l-3 5'/%3E%3C/svg%3E");
+            filter: drop-shadow(0 0 5px var(--accent-color));
+        }
+
+        .navbar-brand-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-section-text);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+        }
+
+        .navbar-brand-clickable {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--dark-section-text);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-secondary);
+            text-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* MODIFIED: Login/Sign Up Button CSS for better contrast/readability */
+        .auth-button {
+            background: var(--accent-secondary);
+            color: var(--text-color);
+            /* Changed text color from --card-bg (white) to --text-color (dark) */
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .auth-button:hover {
+            background: #6D28D9;
+            transform: translateY(-2px);
+            color: var(--card-bg);
+            /* Change text color to white on hover for better contrast on darker purple */
+        }
+
+        /* Hero Section - Custom Layout and Font Sizes */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: calc(4rem + var(--navbar-height));
+            padding-bottom: 4rem;
+            background-color: transparent;
+            background-attachment: fixed;
+            color: var(--text-color);
+            position: relative;
+            min-height: 90vh;
+            border-bottom: 2px solid rgba(6, 182, 212, 0.2);
+            overflow: hidden;
+            text-align: center;
+            /* Ensure text is centered */
+        }
+
+        /* Hero Text - Adjustments for single line heading and 3-line paragraph */
+        .hero-heading {
+            font-size: 4.8rem;
+            /* Slightly increased for impact */
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            padding: 0 20px;
+            max-width: 95%;
+            /* Allow more width */
+            white-space: nowrap;
+            /* Keep on one line */
+            overflow: hidden;
+            /* Hide overflow if it still happens */
+            text-overflow: ellipsis;
+            /* Add ellipsis if hidden */
+            line-height: 1.1;
+            /* Tighter line height for single line */
+        }
+
+        .hero-paragraph {
+            font-size: 1.25rem;
+            /* Slightly smaller than before to fit 3 lines */
+            max-width: 750px;
+            /* Adjusted max-width for 3 lines */
+            margin: 0 auto 3rem auto;
+            line-height: 1.5;
+            /* Standard line height */
+            color: var(--text-color);
+            padding: 0 20px;
+        }
+
+        /* Page Content - Light Theme */
+        .page-content {
+            padding: 6rem 0;
+            background-color: rgba(245, 247, 250, 0.5);
+        }
+
+        .page-content h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+
+        /* --- START: GPU MARKETPLACE CUSTOM STYLES (MODIFIED) --- */
+        .gpu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            /* Reduced gap between cards */
+            position: relative;
+        }
+
+        .gpu-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* MODIFICATION 1: Reduced Vertical Padding for a shorter card */
+            padding: 1rem 2rem;
+        }
+
+        .gpu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gpu-card-header {
+            padding: 0;
+            background: transparent;
+            border-bottom: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .gpu-card-header h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            /* Slightly reduced font size */
+            color: var(--text-color);
+            text-shadow: none;
+        }
+
+        .gpu-card-body {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .gpu-card-body p {
+            margin: 0.3rem 0;
+            font-size: 1rem;
+        }
+
+        .gpu-card-body .price {
+            font-size: 1.8rem;
+            /* Slightly reduced price font size */
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        /* Form - Light Theme */
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            /* White background */
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            /* Cyan label text */
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            /* MODIFIED/NEW */
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-family: inherit;
+            /* NEW */
+        }
+
+        .form-group input[type="file"] {
+            /* Custom styling for file input to match theme */
+            cursor: pointer;
+            background-color: var(--input-bg);
+            padding: 14px 10px;
+            /* Adjust padding for file type */
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            /* MODIFIED */
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+            /* Cyan glow */
+        }
+
+        /* Form Submit Button - Light Theme */
+        .form-submit-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent-color);
+            /* Bright Cyan */
+            color: var(--text-color);
+            /* Dark text on vibrant button */
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-submit-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.7), 0 0 30px var(--accent-hover);
+            background: var(--accent-hover);
+        }
+
+        .success-message {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--success-color);
+            /* Emerald Green */
+            color: var(--card-bg);
+            /* White text on green background */
+            border: 1px solid var(--success-color);
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .error-message {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--danger-color);
+            color: var(--card-bg);
+            border: 1px solid var(--danger-color);
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .status-pending {
+            background-color: var(--status-pending);
+            color: #000;
+        }
+
+        .status-accepted {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .status-processing {
+            background-color: var(--accent-secondary);
+            color: #fff;
+            animation: pulse 2s infinite;
+        }
+
+        .status-completed {
+            background-color: var(--success-color);
+            color: #fff;
+        }
+
+        .status-failed {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .hero-heading {
+                font-size: 3rem;
+                white-space: normal;
+            }
+
+            .hero-paragraph {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                height: auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+                margin-top: 1rem;
+            }
+
+            .gpu-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .gpu-card-body {
+                align-items: flex-start;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="submit-job">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div>
+            <a href="home.html" class="navbar-brand-clickable">
+                <span class="navbar-brand-text">TaskForge</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="marketplace.html">GPU Marketplace</a></li>
+            <li><a href="borrower.html" style="color: var(--accent-color); font-weight: 700;">Submit Job</a></li>
+            <li><a href="lender.html">Lend GPU</a></li>
+            <li class="wallet-display">
+                <a href="wallet.html" style="color: var(--accent-color); font-weight: 700; text-decoration: none;">
+                    <span id="walletBalance">Loading...</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="min-height: 40vh; padding-top: 8rem;">
+        <h1 class="hero-heading">Submit Training Job</h1>
+        <p class="hero-paragraph">Upload your ML model and let our GPU network train it for you</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="page-content">
+        <div class="container">
+
+            <!-- Upload Form -->
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-color);">📤 New Training Job
+                </h2>
+                <form id="uploadForm">
+                    <div id="selectedGpuContainer"
+                        style="display: none; background: rgba(6, 182, 212, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--accent-color); margin-bottom: 20px;">
+                        <h3 style="color: var(--accent-color); font-size: 1.1rem; margin-bottom: 10px;">🖥️ Selected GPU
+                        </h3>
+                        <div id="selectedGpuDetails" style="font-weight: 600;">Loading...</div>
+                        <input type="hidden" id="lenderId" name="lenderId">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="borrowerName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Job Description</label>
+                        <textarea id="description" rows="3" placeholder="Describe your training job..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload train.zip</label>
+                        <input type="file" id="trainFile" accept=".zip" required>
+                    </div>
+
+                    <!-- Cost Preview -->
+                    <div id="costPreview"
+                        style="display: none; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 20px; border-radius: 10px; border: 2px solid var(--accent-color); margin-bottom: 20px;">
+                        <h3 style="color: var(--accent-color); font-size: 1.1rem; margin-bottom: 15px;">💰 Estimated
+                            Cost</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.9rem;">GPU Selected</div>
+                                <div id="costGpu" style="font-weight: 700; font-size: 1.1rem;">-</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.9rem;">Rate</div>
+                                <div id="costRate" style="font-weight: 700; font-size: 1.1rem;">-</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.9rem;">Estimated Time</div>
+                                <div id="costTime" style="font-weight: 700; font-size: 1.1rem;">10 minutes</div>
+                            </div>
+                            <div>
+                                <div style="opacity: 0.7; font-size: 0.9rem;">Total Cost</div>
+                                <div id="costTotal"
+                                    style="font-weight: 900; font-size: 1.3rem; color: var(--accent-secondary);">-</div>
+                            </div>
+                        </div>
+                        <div
+                            style="background: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 5px; font-size: 0.9rem;">
+                            <strong>Your Balance:</strong> <span id="costBalance">Loading...</span> credits
+                            <span id="costWarning"
+                                style="display: none; color: var(--danger-color); margin-left: 10px;">⚠️ Insufficient
+                                credits!</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="form-submit-button">🚀 Submit Job</button>
+                </form>
+                <div id="uploadStatus"></div>
+            </div>
+
+            <!-- My Jobs -->
+            <div style="margin-top: 6rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-color);">📊 My Jobs</h2>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <button onclick="loadMyJobs()" class="auth-button" style="cursor: pointer;">🔄 Refresh List</button>
+                </div>
+                <div id="jobsList" class="gpu-list">
+                    <div style="text-align: center; padding: 2rem; opacity: 0.7;">Loading jobs...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const API_URL = `${window.location.origin}/api`;
+
+        // Handle form submission
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('borrowerName', document.getElementById('borrowerName').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('trainFile', document.getElementById('trainFile').files[0]);
+            formData.append('borrowerId', 'user-demo'); // Default borrower ID
+            formData.append('estimatedMinutes', '10'); // Default 10 minutes
+
+            const lenderId = document.getElementById('lenderId').value;
+            if (lenderId) {
+                formData.append('lenderId', lenderId);
+            }
+
+            const statusDiv = document.getElementById('uploadStatus');
+            statusDiv.innerHTML = '<div style="text-align: center; margin-top: 1rem;">Uploading...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/jobs`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const creditsMsg = result.creditsLocked > 0 ? ` (${result.creditsLocked} credits locked in escrow)` : '';
+                    statusDiv.innerHTML = `<div class="success-message">✓ Job submitted successfully! Job ID: ${result.jobId}${creditsMsg}</div>`;
+                    document.getElementById('uploadForm').reset();
+                    setTimeout(() => loadMyJobs(), 1000);
+                } else if (result.error === 'Insufficient credits') {
+                    statusDiv.innerHTML = `<div class="error-message">✗ ${result.message || 'Insufficient credits'}<br><small>Required: ${result.required} credits</small></div>`;
+                } else {
+                    statusDiv.innerHTML = `<div class="error-message">✗ Error: ${result.error}</div>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="error-message">✗ Error: ${error.message}</div>`;
+            }
+        });
+
+        // Load jobs
+        async function loadMyJobs() {
+            const jobsList = document.getElementById('jobsList');
+            jobsList.innerHTML = '<div style="text-align: center; padding: 2rem; opacity: 0.7;">Loading jobs...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/jobs`);
+                const data = await response.json();
+
+                if (data.jobs.length === 0) {
+                    jobsList.innerHTML = '<p style="text-align: center; opacity: 0.7; font-size: 1.2rem;">No jobs found. Submit your first job above!</p>';
+                    return;
+                }
+
+                jobsList.innerHTML = data.jobs.map(job => `
+                    <div class="gpu-card">
+                        <div class="gpu-card-header">
+                            <h3>${job.description} <span class="status-badge status-${job.status}">${job.status}</span></h3>
+                            <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 0.5rem;">ID: ${job.id}</p>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                                👤 ${job.borrowerName} &nbsp;|&nbsp; 📅 ${new Date(job.uploadedAt).toLocaleString()}
+                                ${job.lenderName ? `&nbsp;|&nbsp; 🔧 ${job.lenderName}` : ''}
+                            </div>
+                        </div>
+                        <div class="gpu-card-body">
+                            ${job.estimatedTime ? `<p>⏱️ Est: ${job.estimatedTime}</p>` : ''}
+                            ${job.status === 'completed' ? `
+                                <a href="${API_URL}/jobs/${job.id}/result" class="auth-button" style="background: var(--success-color); margin-top: 0.5rem; display: inline-block;">
+                                    📥 Download Result
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                jobsList.innerHTML = `<div class="error-message">Error loading jobs: ${error.message}</div>`;
+            }
+        }
+
+        // Load jobs on page load
+        loadMyJobs();
+
+        // Auto-refresh every 10 seconds
+        setInterval(loadMyJobs, 10000);
+
+        // Check for instance param
+        async function checkUrlParams() {
+            console.log('Checking URL params...');
+            const urlParams = new URLSearchParams(window.location.search);
+            const instanceId = urlParams.get('instance');
+            console.log('Instance ID:', instanceId);
+
+            if (instanceId) {
+                document.getElementById('selectedGpuContainer').style.display = 'block';
+                document.getElementById('selectedGpuDetails').textContent = 'Loading instance details...';
+
+                try {
+                    const response = await fetch(`${API_URL}/lenders/${instanceId}`);
+                    const data = await response.json();
+                    const lender = data && data.lender;
+
+                    if (lender && !data.error) {
+                        document.getElementById('selectedGpuDetails').innerHTML = `
+                            <div style="font-size: 1.2rem; margin-bottom: 5px;">${lender.gpu} (${lender.vram} GB VRAM)</div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">Lender: ${lender.name} | OS: ${lender.os}</div>
+                        `;
+                        document.getElementById('lenderId').value = lender.id;
+
+                        // Show cost preview
+                        if (lender.pricing) {
+                            const estimatedMinutes = 10;
+                            const totalCost = lender.pricing.perMinute * estimatedMinutes;
+
+                            document.getElementById('costPreview').style.display = 'block';
+                            document.getElementById('costGpu').textContent = lender.gpu;
+                            document.getElementById('costRate').textContent = `${lender.pricing.perMinute} credits/min`;
+                            document.getElementById('costTotal').textContent = `${totalCost} credits`;
+
+                            // Check balance
+                            try {
+                                const balanceResponse = await fetch(`${API_URL}/wallet/balance/user-demo`);
+                                const balanceData = await balanceResponse.json();
+                                document.getElementById('costBalance').textContent = balanceData.balance;
+
+                                if (balanceData.balance < totalCost) {
+                                    document.getElementById('costWarning').style.display = 'inline';
+                                } else {
+                                    document.getElementById('costWarning').style.display = 'none';
+                                }
+                            } catch (error) {
+                                console.error('Error checking balance:', error);
+                            }
+                        }
+                    } else {
+                        document.getElementById('selectedGpuDetails').textContent = '⚠️ Error loading instance details.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching lender:', error);
+                    document.getElementById('selectedGpuDetails').textContent = '⚠️ Error loading instance details.';
+                }
+            }
+        }
+
+
+        // Load wallet balance
+        async function loadWalletBalance() {
+            try {
+                const userId = 'user-demo'; // Default user ID
+                const response = await fetch(`${API_URL}/wallet/balance/${userId}`);
+                const data = await response.json();
+
+                if (data.balance !== undefined) {
+                    document.getElementById('walletBalance').textContent = `${data.balance} credits`;
+                } else {
+                    document.getElementById('walletBalance').textContent = '0 credits';
+                }
+            } catch (error) {
+                console.error('Error loading wallet balance:', error);
+                document.getElementById('walletBalance').textContent = 'Error';
+            }
+        }
+
+        // Load wallet balance on page load
+        loadWalletBalance();
+        checkUrlParams();
+    </script>
+</body>
+
+</html>
