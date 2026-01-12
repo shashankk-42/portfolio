@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Shashank Kakad - Portfolio Website
 
 A modern, full-stack portfolio website built with the MERN stack, featuring a clean design with Orbitron font and cyan/purple color scheme.
@@ -161,3 +162,8 @@ ISC
 ---
 
 Built with ❤️ using MERN Stack
+=======
+# portfolio
+
+Portfolio website of Shashank Kakad — showcasing projects, ventures, and a journey in building impactful tech.
+>>>>>>> 611e688b44bbecb9b7938de124f6025f2c778aaa
