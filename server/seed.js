@@ -31,12 +31,45 @@ const seedData = async () => {
             title: 'Sophomore at VIT | SDE | Cybersecurity Enthusiast',
             bio: 'Passionate software developer and cybersecurity enthusiast currently pursuing my degree at VIT. I love building innovative solutions that solve real-world problems, from AI-powered assistive technology to decentralized computing platforms.',
             email: 'shashankkakad10@gmail.com',
+            phone: '+91 9503291648',
             github: 'https://github.com/shashankk-42',
             linkedin: 'https://www.linkedin.com/in/shashank-kakad/',
+            photo: '/photo.jpg',
             skills: [
-                'Python', 'JavaScript', 'C++', 'Node.js', 'React', 'Express',
-                'MongoDB', 'TensorFlow', 'OpenCV', 'FastAPI', 'Docker',
-                'Network Security', 'Machine Learning', 'Computer Vision'
+                'Python', 'C++', 'JavaScript',
+                'HTML5', 'CSS3', 'React.js', 'Node.js', 'Express.js', 'Flutter',
+                'Git', 'GitHub', 'Docker',
+                'SQLite', 'Cisco Packet Tracer', 'Google Cloud Platform'
+            ],
+            education: [
+                {
+                    institution: 'Vishwakarma Institute of Technology, Pune',
+                    degree: 'B-Tech in Computer Science and Engineering (Data Science)',
+                    duration: '2024 - Present',
+                    location: 'Pune, India'
+                },
+                {
+                    institution: 'Suryadatta Public School, Pune',
+                    degree: 'Higher Secondary Certificate (HSC) – 12th Grade',
+                    duration: '2022 - 2024',
+                    location: 'Pune, India'
+                },
+                {
+                    institution: 'New India School, Pune',
+                    degree: 'Secondary School Certificate (SSC) – 10th Grade',
+                    duration: '2020 - 2022',
+                    location: 'Pune, India'
+                }
+            ],
+            certifications: [
+                {
+                    name: 'Cyber Job Simulation',
+                    issuer: 'Deloitte'
+                },
+                {
+                    name: 'Advanced Excel',
+                    issuer: 'SevenMentor Pvt Ltd'
+                }
             ]
         });
         await about.save();
@@ -220,8 +253,8 @@ const seedData = async () => {
                 description: 'Leading sponsorship initiatives and organizing major technical events',
                 achievements: [
                     'Promoted from Member to Head of Sponsorship',
-                    'Led 2 major events with sponsors from Unstop and CodeChef',
-                    'Managed sponsorship outreach and partnerships',
+                    'Brought in CodeChef and HackerRank as sponsors for technical events',
+                    'Led sponsorship initiatives by negotiating and finalizing corporate partnerships',
                     'Coordinated with technical teams for event execution'
                 ],
                 current: true,

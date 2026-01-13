@@ -33,20 +33,14 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link
-                        to="/about"
-                        style={isActive('/about') ? { color: 'var(--accent-color)', fontWeight: '700' } : {}}
+                    <a
+                        href="/Shashank-Kakad-Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: '#FFFFFF' }}
                     >
-                        About
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/contact"
-                        style={isActive('/contact') ? { color: 'var(--accent-color)', fontWeight: '700' } : {}}
-                    >
-                        Contact
-                    </Link>
+                        Resume
+                    </a>
                 </li>
             </ul>
         </nav>

@@ -4,22 +4,27 @@ import axios from 'axios';
 import './Home.css';
 
 const Home = () => {
+    const [about, setAbout] = useState(null);
     const [projects, setProjects] = useState([]);
     const [achievements, setAchievements] = useState([]);
+    const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [projectsRes, achievementsRes] = await Promise.all([
+                const [aboutRes, projectsRes, achievementsRes, experiencesRes] = await Promise.all([
+                    axios.get('/api/about'),
                     axios.get('/api/projects'),
-                    axios.get('/api/achievements')
+                    axios.get('/api/achievements'),
+                    axios.get('/api/experiences')
                 ]);
 
-                // Get only featured projects
+                setAbout(aboutRes.data.about);
                 const featuredProjects = projectsRes.data.projects.filter(p => p.featured).slice(0, 3);
                 setProjects(featuredProjects);
                 setAchievements(achievementsRes.data.achievements);
+                setExperiences(experiencesRes.data.experiences);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -36,39 +41,142 @@ const Home = () => {
 
     return (
         <div className="home-page">
-            {/* Hero Section */}
+            {/* Hero Section with Photo */}
             <header className="hero-section">
-                <h1 className="hero-heading">
-                    Hi, I'm <span className="highlight-text">Shashank Kakad</span>
-                </h1>
-                <p className="hero-paragraph">
-                    Sophomore at VIT | Software Development Engineer | Cybersecurity Enthusiast
-                    <br />
-                    Building innovative solutions that solve real-world problems
-                </p>
+                <div className="hero-content">
+                    <div className="hero-photo">
+                        <img src="/photo.jpg" alt="Shashank Kakad" />
+                    </div>
+                    <div className="hero-text">
+                        <h1 className="hero-heading">
+                            Hi, I'm <span className="highlight-text">Shashank</span>.
+                        </h1>
+                        <p className="hero-paragraph">
+                            {about?.title || 'Sophomore at VIT | Software Development Engineer | Cybersecurity Enthusiast'}
+                            <br />
+                            Building innovative solutions that solve real-world problems
+                        </p>
 
-                {/* Quick Stats */}
-                <div className="hero-stats">
-                    <div className="stat-item">
-                        <div className="stat-number">{projects.length}+</div>
-                        <div className="stat-label">Projects</div>
-                    </div>
-                    <div className="stat-item">
-                        <div className="stat-number">2</div>
-                        <div className="stat-label">Publications</div>
-                    </div>
-                    <div className="stat-item">
-                        <div className="stat-number">1</div>
-                        <div className="stat-label">Patent</div>
-                    </div>
-                </div>
+                        {/* Quick Stats */}
+                        <div className="hero-stats">
+                            <div className="stat-item">
+                                <div className="stat-number">6+</div>
+                                <div className="stat-label">Projects</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">2</div>
+                                <div className="stat-label">Publications</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">1</div>
+                                <div className="stat-label">Patent</div>
+                            </div>
+                        </div>
 
-                {/* Hero Buttons */}
-                <div className="hero-buttons">
-                    <Link to="/projects" className="btn-hero-primary">🚀 View Projects</Link>
-                    <Link to="/contact" className="btn-hero-secondary">📧 Contact Me</Link>
+                        {/* Hero Buttons */}
+                        <div className="hero-buttons">
+                            <Link to="/projects" className="btn-hero-primary">🚀 View Projects</Link>
+                            <a href={`mailto:${about?.email}`} className="btn-hero-secondary">📧 Contact Me</a>
+                        </div>
+                    </div>
                 </div>
             </header>
+
+            {/* About Section */}
+            <section className="about-section">
+                <div className="container">
+                    <h2>About Me</h2>
+                    <p className="about-bio">{about?.bio}</p>
+
+                    {/* Skills */}
+                    <div className="skills-grid">
+                        {about?.skills.map((skill, idx) => (
+                            <span key={idx} className="skill-badge">{skill}</span>
+                        ))}
+                    </div>
+
+                    {/* Contact Links */}
+                    <div className="contact-links">
+                        <a href={about?.github} target="_blank" rel="noopener noreferrer" className="contact-link">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                            GitHub
+                        </a>
+                        <a href={about?.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                            LinkedIn
+                        </a>
+                        <a href={`mailto:${about?.email}`} className="contact-link">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z" /></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Journey Section */}
+            <section className="journey-section alt-bg">
+                <div className="container">
+                    <h2>Journey</h2>
+
+                    <div className="journey-categories-grid">
+                        {/* Academic */}
+                        <div className="journey-category">
+                            <h3 className="journey-category-title">ACADEMIC</h3>
+                            <div className="journey-timeline">
+                                {about?.education.map((edu, idx) => (
+                                    <div key={idx} className="journey-item">
+                                        <div className="journey-duration">{edu.duration}</div>
+                                        <div className="journey-content">
+                                            <h4>{edu.institution}</h4>
+                                            <p className="journey-degree">{edu.degree}</p>
+                                            <p className="journey-location">{edu.location}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Professional */}
+                        <div className="journey-category">
+                            <h3 className="journey-category-title">PROFESSIONAL</h3>
+                            <div className="journey-timeline">
+                                {experiences.map((exp) => (
+                                    <div key={exp._id} className="journey-item">
+                                        <div className="journey-duration">{exp.duration}</div>
+                                        <div className="journey-content">
+                                            <h4>{exp.role}</h4>
+                                            <p className="journey-org">{exp.organization}</p>
+                                            <p className="journey-desc">{exp.description}</p>
+                                            <ul className="journey-achievements">
+                                                {exp.achievements.map((achievement, idx) => (
+                                                    <li key={idx}>{achievement}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Certifications Section */}
+            {about?.certifications && about.certifications.length > 0 && (
+                <section className="certifications-section">
+                    <div className="container">
+                        <h2>Certifications</h2>
+                        <div className="cert-grid">
+                            {about.certifications.map((cert, idx) => (
+                                <div key={idx} className="cert-item">
+                                    <strong>{cert.name}</strong>
+                                    <span>{cert.issuer}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Featured Projects Section */}
             <section className="taskforge-section" id="featured-projects">
@@ -80,6 +188,9 @@ const Home = () => {
                     <div className="taskforge-boxes">
                         {projects.map((project) => (
                             <div key={project._id} className="taskforge-box project-card">
+                                <div className="project-image-placeholder">
+                                    🚀
+                                </div>
                                 <h3>{project.title}</h3>
                                 <p className="project-domain">{project.domain}</p>
                                 <p>{project.description}</p>
@@ -118,25 +229,6 @@ const Home = () => {
                                 )}
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Experience Section */}
-            <section className="taskforge-section" id="experience">
-                <div className="container">
-                    <h2>Experience</h2>
-                    <div className="taskforge-boxes">
-                        <div className="taskforge-box">
-                            <h3>Head of Sponsorship</h3>
-                            <p className="experience-org">GeeksForGeeks VIT</p>
-                            <p className="experience-duration">Aug 2024 - Present</p>
-                            <ul className="experience-achievements">
-                                <li>Promoted from Member to Head of Sponsorship</li>
-                                <li>Led 2 major events with sponsors from Unstop and CodeChef</li>
-                                <li>Managed sponsorship outreach and partnerships</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </section>

@@ -20,6 +20,10 @@ const aboutSchema = new mongoose.Schema({
         required: true,
         default: 'shashankkakad10@gmail.com'
     },
+    phone: {
+        type: String,
+        default: '+91 9503291648'
+    },
     github: {
         type: String,
         default: 'https://github.com/shashankk-42'
@@ -28,8 +32,22 @@ const aboutSchema = new mongoose.Schema({
         type: String,
         default: 'https://www.linkedin.com/in/shashank-kakad/'
     },
+    photo: {
+        type: String,
+        default: '/photo.jpg'
+    },
     skills: [{
         type: String
+    }],
+    education: [{
+        institution: String,
+        degree: String,
+        duration: String,
+        location: String
+    }],
+    certifications: [{
+        name: String,
+        issuer: String
     }],
     updatedAt: {
         type: Date,
