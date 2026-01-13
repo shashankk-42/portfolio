@@ -12,8 +12,7 @@ const Footer = () => {
                         <ul>
                             <li><a href="/" className="footer-link">Home</a></li>
                             <li><a href="/projects" className="footer-link">Projects</a></li>
-                            <li><a href="/about" className="footer-link">About</a></li>
-                            <li><a href="/contact" className="footer-link">Contact</a></li>
+                            <li><a href="/Shashank-Kakad-Resume.pdf" target="_blank" rel="noopener noreferrer" className="footer-link">Resume</a></li>
                         </ul>
                     </div>
                     <div className="footer-section">

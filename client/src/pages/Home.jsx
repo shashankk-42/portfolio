@@ -188,9 +188,7 @@ const Home = () => {
                     <div className="taskforge-boxes">
                         {projects.map((project) => (
                             <div key={project._id} className="taskforge-box project-card">
-                                <div className="project-image-placeholder">
-                                    🚀
-                                </div>
+                                <div className="project-image-placeholder"></div>
                                 <h3>{project.title}</h3>
                                 <p className="project-domain">{project.domain}</p>
                                 <p>{project.description}</p>

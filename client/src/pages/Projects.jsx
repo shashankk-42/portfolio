@@ -37,9 +37,7 @@ const Projects = () => {
             <div className="projects-container">
                 {projects.map((project) => (
                     <div key={project._id} className="project-card-simple">
-                        <div className="project-image-placeholder">
-                            🚀
-                        </div>
+                        <div className="project-image-placeholder"></div>
                         <h3>{project.title}</h3>
                         <p className="project-description">{project.description}</p>
                         <div className="tech-stack-simple">
