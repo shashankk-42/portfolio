@@ -7,20 +7,20 @@
 /* Hero Section */
 .page-hero {
     text-align: center;
-    padding: 1.5rem 2rem 1.5rem;
+    padding: 1.5rem 2rem 1rem;
     background-color: var(--bg-color);
     border-bottom: 2px solid rgba(6, 182, 212, 0.2);
 }
 
 .page-title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--text-color);
 }
 
 .page-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--text-color);
     opacity: 0.8;
     max-width: 700px;
@@ -31,10 +31,10 @@
 .projects-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 /* Simple Project Cards (adwyte style) */
@@ -56,7 +56,7 @@
 .project-image-placeholder {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 100%);
+    background: #000000;
     border-radius: 12px 12px 0 0;
     margin-bottom: 0;
     display: flex;
@@ -90,8 +90,7 @@
     color: var(--text-color);
     margin: 0;
     font-weight: 700;
-    padding: 0 2rem;
-    padding-top: 1.5rem;
+    padding: 0.5rem 2rem 0 2rem;
 }
 
 .project-description {

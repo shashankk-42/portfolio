@@ -4,12 +4,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: calc(4rem + var(--navbar-height));
-    padding-bottom: 8rem;
+    padding-top: calc(3rem + var(--navbar-height));
+    padding-bottom: 4rem;
     background-color: transparent;
     color: var(--text-color);
     position: relative;
-    min-height: 80vh;
+    min-height: 70vh;
     border-bottom: 2px solid rgba(6, 182, 212, 0.2);
     overflow: hidden;
 }
@@ -17,7 +17,7 @@
 .hero-content {
     display: flex;
     align-items: flex-start;
-    gap: 5rem;
+    gap: 3rem;
     max-width: 1200px;
     width: 100%;
     padding: 0 2rem;
@@ -49,19 +49,19 @@
 }
 
 .hero-heading {
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 800;
-    margin: 0 0 2rem 0;
+    margin: 0 0 1.5rem 0;
     max-width: 95%;
     line-height: 1.1;
     letter-spacing: -2px;
 }
 
 .hero-paragraph {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     max-width: 700px;
-    margin: 0 0 3rem 0;
-    line-height: 1.8;
+    margin: 0 0 2rem 0;
+    line-height: 1.7;
     color: var(--text-color);
     opacity: 0.9;
 }
@@ -69,8 +69,8 @@
 /* Hero Stats */
 .hero-stats {
     display: flex;
-    gap: 3rem;
-    margin: 2rem 0 3rem;
+    gap: 2rem;
+    margin: 1.5rem 0 2rem;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
@@ -141,7 +141,7 @@
 
 /* Sections */
 .taskforge-section {
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
     text-align: center;
     background-color: var(--bg-color);
     border-top: 1px solid var(--border-color);
@@ -166,8 +166,8 @@
 }
 
 .taskforge-section h2 {
-    font-size: 3.5rem;
-    margin-bottom: 3rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
     color: var(--accent-color);
     text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
 }
@@ -175,7 +175,7 @@
 .taskforge-boxes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -184,7 +184,7 @@
 .achievements-boxes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -193,7 +193,7 @@
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 15px;
-    padding: 2rem;
+    padding: 0;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -201,7 +201,7 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    min-height: 300px;
+    height: 100%;
 }
 
 .taskforge-box:hover {
@@ -212,12 +212,14 @@
     color: var(--text-color);
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    padding: 0.5rem 2rem 0 2rem;
 }
 
 .taskforge-box p {
     color: var(--text-color);
     font-size: 1.05rem;
     line-height: 1.7;
+    padding: 0 2rem;
 }
 
 /* Achievement Card Specific Styles */
@@ -266,9 +268,9 @@
 .project-image-placeholder {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #06B6D4 0%, #8B5CF6 100%);
+    background: #000000;
     border-radius: 15px 15px 0 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -276,6 +278,7 @@
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .project-image-placeholder::before {
@@ -300,6 +303,7 @@
     font-size: 0.9rem !important;
     font-weight: 600;
     margin-bottom: 1rem;
+    padding: 0 2rem;
 }
 
 .tech-stack {
@@ -307,6 +311,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 1rem 0;
+    padding: 0 2rem;
 }
 
 .tech-badge {
@@ -323,7 +328,7 @@
     text-decoration: none;
     font-weight: 600;
     margin-top: auto;
-    padding-top: 1rem;
+    padding: 1rem 2rem 2rem 2rem;
     transition: color 0.3s;
 }
 
@@ -333,7 +338,7 @@
 
 /* Achievement Cards */
 .achievement-card {
-    padding: 2.5rem !important;
+    padding: 2rem !important;
 }
 
 .achievement-type {
@@ -398,7 +403,7 @@
 
 /* About Section */
 .about-section {
-    padding: 6rem 2rem;
+    padding: 3.5rem 2rem;
     background-color: var(--bg-color);
     border-top: 1px solid var(--border-color);
 }
@@ -409,28 +414,28 @@
 }
 
 .about-section h2 {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     color: var(--accent-color);
     text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     text-align: center;
 }
 
 .about-bio {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
     text-align: center;
     color: var(--text-color);
 }
 
 /* Technical Skills */
 .technical-skills {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -504,13 +509,13 @@
 
 /* Journey Section */
 .journey-section {
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
     background-color: var(--dark-section-bg);
 }
 
 .journey-section h2 {
-    font-size: 3.5rem;
-    margin-bottom: 4rem;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
     color: var(--dark-section-accent);
     text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
     text-align: center;
@@ -519,7 +524,7 @@
 .journey-categories-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -544,10 +549,10 @@
 .journey-item {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 2.5rem;
+    gap: 0.2rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: 2rem;
     position: relative;
     border-bottom: 1px solid rgba(6, 182, 212, 0.2);
 }
@@ -577,7 +582,7 @@
     position: absolute;
     left: 5px;
     top: 1.5rem;
-    bottom: -3rem;
+    bottom: -2rem;
     width: 2px;
     background: rgba(6, 182, 212, 0.3);
     z-index: 1;
@@ -600,13 +605,16 @@
 .journey-duration {
     color: var(--accent-secondary);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .journey-content h4 {
     color: #FFFFFF;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
 }
 
 .journey-degree,
@@ -614,26 +622,33 @@
     color: #FFFFFF;
     font-weight: 600;
     margin-bottom: 0.3rem;
+    font-size: 1.05rem;
+    opacity: 0.95;
 }
 
 .journey-location,
 .journey-desc {
     color: #FFFFFF;
-    opacity: 0.8;
-    margin-bottom: 1rem;
+    opacity: 0.75;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .journey-achievements {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
 .journey-achievements li {
     position: relative;
     padding-left: 20px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     color: #FFFFFF;
+    opacity: 0.85;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .journey-achievements li:before {

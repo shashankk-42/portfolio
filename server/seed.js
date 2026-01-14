@@ -89,6 +89,62 @@ const seedData = async () => {
         // Seed Projects
         const projects = [
             {
+                title: 'Cloud Service Integration with MCP',
+                description: 'Multi-cloud AI orchestration system with intelligent resource management and cost optimization',
+                longDescription: 'An enterprise-grade system that uses Model Context Protocol (MCP) to integrate AI models with various cloud services (AWS, Azure, GCP) for scalable processing. Features LangGraph agents for cloud orchestration, automated cost optimization, and intelligent resource management across multiple cloud providers. Built as part of an industry collaboration with Accion Labs to solve real-world challenges in cloud-native AI deployments.',
+                images: [
+                    'https://miro.medium.com/v2/resize:fit:1400/1*8Y0KQZ_8Y6Z8Y6Z8Y6Z8YA.jpeg'
+                ],
+                techStack: ['Python', 'LangGraph', 'MCP', 'AWS', 'Azure', 'GCP', 'Kubernetes', 'Docker', 'Terraform', 'OpenTelemetry', 'Kafka'],
+                domain: 'Cloud Engineering / AI Orchestration / Multi-Cloud',
+                features: [
+                    'MCP servers for AWS, Azure, and GCP integration',
+                    'LangGraph-based intelligent agent orchestration',
+                    'Dynamic resource allocation with cost optimization (15-30% reduction)',
+                    'Multi-cloud failover and disaster recovery',
+                    'Policy-as-code with OPA for compliance and security',
+                    'Spot/preemptible instance management with auto-fallback',
+                    'Real-time cost tracking and budget guardrails',
+                    'Kubernetes-native with KServe/Triton model serving',
+                    'Complete observability with OpenTelemetry and SIEM integration'
+                ],
+                architecture: 'Multi-cloud control plane with MCP servers per cloud provider, LangGraph orchestration agents (planner→allocator→executor→verifier→finisher), Kubernetes-based data plane with autoscaling, centralized state management with Postgres/Spanner, and comprehensive security with mTLS, SPIFFE, and KMS integration.',
+                semester: 'industry',
+                featured: true,
+                isIndustry: true,
+                organization: 'Accion Labs',
+                organizationUrl: 'https://www.accionlabs.com/',
+                ongoing: true,
+                order: 1
+            },
+            {
+                title: 'TaskForge',
+                description: 'Award-winning collaborative productivity platform with decentralized compute-sharing marketplace',
+                longDescription: 'TaskForge is a modular, collaborative productivity platform designed for teams, students, and project groups, recognized by Design Impact Movement (Titan). It serves as an all-in-one environment for task tracking, progress visualization, role-based workflows, and GPU marketplace integration. Selected by Titan\'s Design Impact Movement for its innovative approach to solving real-world productivity challenges and creating social impact through technology.',
+                images: [
+                    'https://cdn.dribbble.com/userupload/43760634/file/original-139d21443a908931a1fe52a8e0678d25.jpg'
+                ],
+                techStack: ['MERN Stack', 'Node.js', 'Express', 'MongoDB', 'React', 'WebSockets', 'JWT', 'Material-UI'],
+                domain: 'Productivity / Collaboration / Social Impact',
+                features: [
+                    'Real-time collaborative project dashboards',
+                    'Kanban-style task boards with drag-and-drop',
+                    'Role-based access control and team permissions',
+                    'GPU/compute resource marketplace integration',
+                    'Progress tracking and analytics',
+                    'Real-time notifications and updates',
+                    'Secure authentication and authorization',
+                    'Responsive design for all devices'
+                ],
+                github: 'https://github.com/shashankk-42/taskforge',
+                semester: 'industry',
+                featured: true,
+                isIndustry: true,
+                organization: 'Design Impact Movement (Titan)',
+                organizationUrl: 'https://designimpactmovement.titan.in/',
+                order: 2
+            },
+            {
                 title: 'DDoS Detection & Visualization System',
                 description: 'Real-time anomaly detection system for monitoring and visualizing DDoS attacks',
                 longDescription: 'A real-time anomaly detection system built to monitor and visualize unusually high traffic loads that resemble small-scale Distributed Denial of Service (DDoS) attacks. Every inbound request is funneled through a C++ Crow-based proxy server, which acts as a middleware layer between the client and the hosted target website.',
@@ -105,8 +161,9 @@ const seedData = async () => {
                     'Cloud-based deployment'
                 ],
                 semester: 'sem1',
-                featured: true,
-                order: 1
+                featured: false,
+                isIndustry: false,
+                order: 3
             },
             {
                 title: 'Sono Lumos Smart Cane',
@@ -125,8 +182,9 @@ const seedData = async () => {
                     'Flutter companion app'
                 ],
                 semester: 'extra',
-                featured: true,
-                order: 2
+                featured: false,
+                isIndustry: false,
+                order: 4
             },
             {
                 title: 'EduSense+',
@@ -145,28 +203,9 @@ const seedData = async () => {
                     'Supports online and hybrid classes'
                 ],
                 semester: 'sem2',
-                featured: true,
-                order: 3
-            },
-            {
-                title: 'TaskForge',
-                description: 'Decentralized system for secure and efficient distributed compute-sharing',
-                longDescription: 'TaskForge is a modular, collaborative productivity platform designed for teams, students, and project groups. It serves as an all-in-one environment for task tracking, progress visualization, role-based workflows, and GPU marketplace integration.',
-                images: [
-                    'https://cdn.dribbble.com/userupload/43760634/file/original-139d21443a908931a1fe52a8e0678d25.jpg'
-                ],
-                techStack: ['MERN Stack', 'Node.js', 'Express', 'MongoDB', 'React'],
-                domain: 'Productivity / Collaboration Tools',
-                features: [
-                    'Project dashboards',
-                    'Kanban-style task boards',
-                    'Team roles and permissions',
-                    'Real-time collaboration',
-                    'GPU marketplace integration'
-                ],
-                semester: 'sem3',
-                featured: true,
-                order: 4
+                featured: false,
+                isIndustry: false,
+                order: 5
             },
             {
                 title: 'Smart Tourist Safety System',
@@ -186,7 +225,8 @@ const seedData = async () => {
                 ],
                 semester: 'sih',
                 featured: false,
-                order: 5
+                isIndustry: false,
+                order: 6
             },
             {
                 title: 'The Indian Insite',
@@ -206,12 +246,14 @@ const seedData = async () => {
                 ],
                 semester: 'extra',
                 featured: false,
-                order: 6
+                isIndustry: false,
+                ongoing: true,
+                order: 7
             }
         ];
 
         await Project.insertMany(projects);
-        console.log('✓ Seeded 6 projects');
+        console.log('✓ Seeded 7 projects (2 industry projects)');
 
         // Seed Achievements
         const achievements = [
@@ -259,36 +301,33 @@ const seedData = async () => {
         // Seed Experience
         const experiences = [
             {
-                organization: 'GeeksForGeeks VIT',
-                role: 'Head of Sponsorship',
-                duration: 'Aug 2024 - Present',
-                description: 'Leading sponsorship initiatives and organizing major technical events',
+                organization: 'Industry Projects',
+                role: 'Industry Collaborations',
+                duration: '2024 - 2025',
+                description: 'Real-world industry partnerships and collaborations',
                 achievements: [
-                    'Promoted from Member to Head of Sponsorship',
-                    'Brought in CodeChef and HackerRank as sponsors for technical events',
-                    'Led sponsorship initiatives by negotiating and finalizing corporate partnerships',
-                    'Coordinated with technical teams for event execution'
+                    'Accion Labs: Multi-cloud AI orchestration system with MCP, LangGraph, AWS, Azure, GCP for intelligent resource management and cost optimization',
+                    'Design Impact Movement (Titan): Award-winning collaborative productivity platform selected for social impact innovation'
                 ],
-                current: true,
+                current: false,
                 order: 1
             },
             {
                 organization: 'GeeksForGeeks VIT',
-                role: 'Member',
-                duration: 'Aug 2023 - Aug 2024',
-                description: 'Active member contributing to technical events and workshops',
+                role: 'Head of Sponsorship',
+                duration: 'Aug 2024 - Present',
+                description: 'Leading sponsorship initiatives for major technical events',
                 achievements: [
-                    'Participated in organizing coding competitions',
-                    'Assisted in workshop coordination',
-                    'Contributed to community building initiatives'
+                    'Secured CodeChef and HackerRank as event sponsors',
+                    'Negotiated and finalized corporate partnerships'
                 ],
-                current: false,
+                current: true,
                 order: 2
             }
         ];
 
         await Experience.insertMany(experiences);
-        console.log('✓ Seeded 2 experiences');
+        console.log('✓ Seeded 3 experiences (including industry projects)');
 
         console.log('\n✅ Database seeded successfully!\n');
         process.exit(0);

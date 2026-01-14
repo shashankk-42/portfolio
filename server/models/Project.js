@@ -47,6 +47,22 @@ const projectSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  isIndustry: {
+    type: Boolean,
+    default: false
+  },
+  organization: {
+    type: String,
+    default: ''
+  },
+  organizationUrl: {
+    type: String,
+    default: ''
+  },
+  ongoing: {
+    type: Boolean,
+    default: false
+  },
   order: {
     type: Number,
     default: 0
