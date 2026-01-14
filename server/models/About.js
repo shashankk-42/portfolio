@@ -37,7 +37,8 @@ const aboutSchema = new mongoose.Schema({
         default: '/photo.jpg'
     },
     skills: [{
-        type: String
+        category: String,
+        items: [String]
     }],
     education: [{
         institution: String,

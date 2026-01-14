@@ -75,8 +75,8 @@ const Home = () => {
 
                         {/* Hero Buttons */}
                         <div className="hero-buttons">
-                            <Link to="/projects" className="btn-hero-primary">🚀 View Projects</Link>
-                            <a href={`mailto:${about?.email}`} className="btn-hero-secondary">📧 Contact Me</a>
+                            <Link to="/projects" className="btn-hero-primary">View Projects</Link>
+                            <Link to="/resume" className="btn-hero-secondary">Resume</Link>
                         </div>
                     </div>
                 </div>
@@ -88,10 +88,17 @@ const Home = () => {
                     <h2>About Me</h2>
                     <p className="about-bio">{about?.bio}</p>
 
-                    {/* Skills */}
-                    <div className="skills-grid">
-                        {about?.skills.map((skill, idx) => (
-                            <span key={idx} className="skill-badge">{skill}</span>
+                    {/* Technical Skills */}
+                    <div className="technical-skills">
+                        {about?.skills.map((skillGroup, idx) => (
+                            <div key={idx} className="skill-category">
+                                <div className="skill-category-title">{skillGroup.category}</div>
+                                <div className="skill-items-grid">
+                                    {skillGroup.items.map((item, itemIdx) => (
+                                        <span key={itemIdx} className="skill-badge">{item}</span>
+                                    ))}
+                                </div>
+                            </div>
                         ))}
                     </div>
 
@@ -161,22 +168,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Certifications Section */}
-            {about?.certifications && about.certifications.length > 0 && (
-                <section className="certifications-section">
-                    <div className="container">
-                        <h2>Certifications</h2>
-                        <div className="cert-grid">
-                            {about.certifications.map((cert, idx) => (
-                                <div key={idx} className="cert-item">
-                                    <strong>{cert.name}</strong>
-                                    <span>{cert.issuer}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
 
             {/* Featured Projects Section */}
             <section className="taskforge-section" id="featured-projects">
@@ -207,11 +198,11 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Achievements Section */}
+            {/* Achievements & Certifications Section */}
             <section className="taskforge-section alt-bg" id="achievements">
                 <div className="container">
                     <h2>Achievements & <span className="highlight-text" style={{ display: 'inline', fontSize: 'inherit' }}>Recognition</span></h2>
-                    <div className="taskforge-boxes">
+                    <div className="achievements-boxes">
                         {achievements.map((achievement) => (
                             <div key={achievement._id} className="taskforge-box achievement-card">
                                 <div className="achievement-type">{achievement.type.toUpperCase()}</div>
@@ -228,6 +219,21 @@ const Home = () => {
                             </div>
                         ))}
                     </div>
+
+                    {/* Certifications */}
+                    {about?.certifications && about.certifications.length > 0 && (
+                        <>
+                            <h2 style={{ marginTop: '4rem' }}>Certifications</h2>
+                            <div className="cert-grid">
+                                {about.certifications.map((cert, idx) => (
+                                    <div key={idx} className="cert-item">
+                                        <strong>{cert.name}</strong>
+                                        <span>{cert.issuer}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
                 </div>
             </section>
         </div>

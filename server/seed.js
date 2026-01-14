@@ -36,10 +36,22 @@ const seedData = async () => {
             linkedin: 'https://www.linkedin.com/in/shashank-kakad/',
             photo: '/photo.jpg',
             skills: [
-                'Python', 'C++', 'JavaScript',
-                'HTML5', 'CSS3', 'React.js', 'Node.js', 'Express.js', 'Flutter',
-                'Git', 'GitHub', 'Docker',
-                'SQLite', 'Cisco Packet Tracer', 'Google Cloud Platform'
+                {
+                    category: 'Programming Languages',
+                    items: ['Python', 'C', 'C++', 'JavaScript']
+                },
+                {
+                    category: 'Web and Mobile Development',
+                    items: ['HTML5', 'CSS3', 'React.js', 'Node.js', 'Express.js', 'Flutter']
+                },
+                {
+                    category: 'Version Control & DevOps',
+                    items: ['Git', 'GitHub', 'Docker']
+                },
+                {
+                    category: 'Tools and Cloud Platforms',
+                    items: ['SQLite', 'Cisco Packet Tracer', 'Google Cloud Platform (Cloud Run, Cloud Storage)']
+                }
             ],
             education: [
                 {
