@@ -42,8 +42,9 @@ if (process.env.NODE_ENV === 'production') {
     // Serve static files from the React app
     app.use(express.static(path.join(__dirname, '../client/dist')));
 
-    // Handle React routing - send all non-API requests to index.html
-    app.get('*', (req, res) => {
+    // Handle React routing - use middleware instead of wildcard route
+    // This catches all requests not handled by above routes
+    app.use((req, res, next) => {
         res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
     });
 }
