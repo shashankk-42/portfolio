@@ -31,6 +31,19 @@ app.use('/api/experiences', experiencesRouter);
 app.use('/api/about', aboutRouter);
 app.use('/api/auth', authRouter);
 
+// Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+
+    // Serve static files from the React app
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+    });
+}
+
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'Portfolio API is running' });
