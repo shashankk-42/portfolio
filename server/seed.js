@@ -109,6 +109,7 @@ const seedData = async () => {
                     'Complete observability with OpenTelemetry and SIEM integration'
                 ],
                 architecture: 'Multi-cloud control plane with MCP servers per cloud provider, LangGraph orchestration agents (planner→allocator→executor→verifier→finisher), Kubernetes-based data plane with autoscaling, centralized state management with Postgres/Spanner, and comprehensive security with mTLS, SPIFFE, and KMS integration.',
+                github: 'https://github.com/shashankk-42/cloud-service-integration-with-MCP',
                 semester: 'industry',
                 featured: true,
                 isIndustry: true,
@@ -136,7 +137,7 @@ const seedData = async () => {
                     'Secure authentication and authorization',
                     'Responsive design for all devices'
                 ],
-                github: 'https://github.com/shashankk-42/taskforge',
+                github: 'https://github.com/shashankk-42/taskforge-decentralized-compute-marketplace',
                 semester: 'industry',
                 featured: true,
                 isIndustry: true,
@@ -160,6 +161,7 @@ const seedData = async () => {
                     'Small-scale DDoS simulation',
                     'Cloud-based deployment'
                 ],
+                github: 'https://github.com/shashankk-42/real-time-ddos-detection-system',
                 semester: 'sem1',
                 featured: false,
                 isIndustry: false,
@@ -181,6 +183,7 @@ const seedData = async () => {
                     'GPS-based emergency system',
                     'Flutter companion app'
                 ],
+                github: 'https://github.com/shashankk-42/sono-lumos-smart-cane',
                 semester: 'extra',
                 featured: false,
                 isIndustry: false,
@@ -202,6 +205,7 @@ const seedData = async () => {
                     'Privacy-first design (no cloud upload)',
                     'Supports online and hybrid classes'
                 ],
+                github: 'https://github.com/shashankk-42/edusense-post-session-emotion-recognition',
                 semester: 'sem2',
                 featured: false,
                 isIndustry: false,
@@ -223,6 +227,7 @@ const seedData = async () => {
                     'Location-based emergency contacts',
                     'Tourist-friendly UI'
                 ],
+                github: 'https://github.com/shashankk-42/smart-tourist-safety-system',
                 semester: 'sih',
                 featured: false,
                 isIndustry: false,
@@ -244,6 +249,7 @@ const seedData = async () => {
                     'Region-wise food discoveries',
                     'Interview-based stories'
                 ],
+                github: 'https://github.com/shashankk-42/indian-insite',
                 semester: 'extra',
                 featured: false,
                 isIndustry: false,
