@@ -35,6 +35,7 @@ const seedData = async () => {
             github: 'https://github.com/shashankk-42',
             linkedin: 'https://www.linkedin.com/in/shashank-kakad/',
             photo: '/photo.jpg',
+            resumeUrl: '/Shashank-Kakad-Resume.pdf',
             skills: [
                 {
                     category: 'Programming Languages',

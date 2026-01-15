@@ -20,7 +20,7 @@ const Footer = () => {
                         <ul>
                             <li><a href="https://github.com/shashankk-42" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a></li>
                             <li><a href="https://www.linkedin.com/in/shashank-kakad/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a></li>
-                            <li><a href="mailto:shashankkakad10@gmail.com" className="footer-link">Email</a></li>
+                            <li><a href="mailto:shashankkakad10@gmail.com" className="footer-link">shashankkakad10@gmail.com</a></li>
                         </ul>
                     </div>
                     <div className="footer-section">

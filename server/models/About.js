@@ -36,6 +36,10 @@ const aboutSchema = new mongoose.Schema({
         type: String,
         default: '/photo.jpg'
     },
+    resumeUrl: {
+        type: String,
+        default: '/Shashank-Kakad-Resume.pdf'
+    },
     skills: [{
         category: String,
         items: [String]
