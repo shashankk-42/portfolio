@@ -121,7 +121,7 @@ const seedData = async () => {
             },
             {
                 title: 'TaskForge',
-                description: 'Award-winning collaborative productivity platform with decentralized compute-sharing marketplace',
+                description: 'Developed collaborative productivity platform with decentralized compute-sharing marketplace',
                 longDescription: 'TaskForge is a modular, collaborative productivity platform designed for teams, students, and project groups, recognized by Design Impact Movement (Titan). It serves as an all-in-one environment for task tracking, progress visualization, role-based workflows, and GPU marketplace integration. Selected by Titan\'s Design Impact Movement for its innovative approach to solving real-world productivity challenges and creating social impact through technology.',
                 images: [
                     'https://cdn.dribbble.com/userupload/43760634/file/original-139d21443a908931a1fe52a8e0678d25.jpg'
@@ -239,7 +239,7 @@ const seedData = async () => {
                 description: 'Content-driven platform showcasing diverse aspects of India',
                 longDescription: 'A content-driven platform that showcases diverse aspects of India — culture, travel, food, traditions, modern lifestyle, and hidden local insights. Aimed at both domestic readers and global audiences.',
                 images: [
-                    'https://blogger.googleusercontent.com/img/a/AVvXsEhLdB1HlXImKuz6JqOL-srrISCH7hPFuhch3x_jMuofdkgYpug-H5sA15l7pe4e0nhtoQBSlEPJOYYZr96IpHGTdZd7SUFozmkkucRyOPAqSIAVH1WbsUi4tXhKYBPO9XQcQCo0j7C9RlaQGUjkHAzKkGupj51IBvVYUk4H8IC8drrgB1MXVSBpSBIe%3Ds16000'
+                    'https://blogger.googleusercontent.com/img/a/AVvXsEhLdB1HlXImKuz6JqOL-srrISCH7hPFuhch3x_jMuofdkgYpug-H5sA15l7pe4e0nhtoQBSlEPJOYYZr96IpHGTdZd7SUFozmkkucRyOPAqSIAVH1WbsUi4tXhKYBPO9XQcQCo0j7C9RlaQGUjkHAzKkGupj51IBbVYUk4H8IC8drrgB1MXVSBpSBIe%3Ds16000'
                 ],
                 techStack: ['HTML', 'CSS', 'JavaScript', 'Hugo/Jekyll/Next.js'],
                 domain: 'Content / Culture / Media',
@@ -256,11 +256,39 @@ const seedData = async () => {
                 isIndustry: false,
                 ongoing: true,
                 order: 7
+            },
+            {
+                title: 'Realtime Reconciliation System',
+                description: 'Event-driven financial transaction reconciliation platform with real-time mismatch detection',
+                longDescription: 'An event-driven platform that matches financial transactions between Core Banking System (CBS) and Payment Gateway in real-time using Apache Kafka, Redis, and WebSocket technologies. The system provides instant mismatch detection, automated alerts, and comprehensive monitoring through a modern React dashboard with sub-second latency.',
+                images: [
+                    'https://miro.medium.com/v2/resize:fit:1400/1*9YvVQZ8Y6Z8Y6Z8Y6Z8YA.jpeg'
+                ],
+                techStack: ['Node.js', 'React', 'TypeScript', 'Apache Kafka', 'Redis', 'Express.js', 'WebSocket', 'Docker', 'Tailwind CSS', 'Recharts'],
+                domain: 'FinTech / Event-Driven Architecture / Real-time Systems',
+                features: [
+                    'Real-time transaction matching with sub-second latency',
+                    'Multi-dimensional mismatch detection (amount, currency, status, time drift)',
+                    'Configurable timeout handling (15s late warning, 60s missing detection)',
+                    'Live WebSocket-powered dashboard with real-time updates',
+                    'Kafka-based event streaming and alert system',
+                    'Redis state persistence for fault tolerance',
+                    'Automated severity classification (LOW, MEDIUM, HIGH)',
+                    'Complete transaction audit trail and timeline tracking',
+                    'Docker containerization with health checks',
+                    'Comprehensive API for queries and metrics'
+                ],
+                architecture: 'Event-driven architecture with Kafka message bus, dual consumers (CBS and Gateway), in-memory state store with Redis persistence, rule-based classifier for mismatch detection, timeout scanner for missing transactions, and React dashboard with WebSocket real-time updates.',
+                github: 'https://github.com/shashankk-42/realtime-reconciliation-system',
+                semester: 'sem1',
+                featured: false,
+                isIndustry: false,
+                order: 8
             }
         ];
 
         await Project.insertMany(projects);
-        console.log('✓ Seeded 7 projects (2 industry projects)');
+        console.log('✓ Seeded 8 projects (2 industry projects)');
 
         // Seed Achievements
         const achievements = [
@@ -314,7 +342,7 @@ const seedData = async () => {
                 description: 'Real-world industry partnerships and collaborations',
                 achievements: [
                     'Accion Labs: Multi-cloud AI orchestration system with MCP, LangGraph, AWS, Azure, GCP for intelligent resource management and cost optimization',
-                    'Design Impact Movement (Titan): Award-winning collaborative productivity platform selected for social impact innovation'
+                    'Design Impact Movement (Titan): Developed collaborative productivity platform selected for social impact innovation'
                 ],
                 current: false,
                 order: 1
