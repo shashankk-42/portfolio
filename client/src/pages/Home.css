@@ -298,21 +298,11 @@
     flex-shrink: 0;
 }
 
-.project-image-placeholder::before {
-    content: "";
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.5);
-}
-
-.project-image-placeholder::after {
-    content: "⚡";
-    position: absolute;
-    font-size: 2.5rem;
-    filter: brightness(0) invert(1);
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* GitHub Link */
@@ -343,6 +333,12 @@
 .github-link svg {
     width: 20px;
     height: 20px;
+}
+
+.github-logo-img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
 }
 
 
