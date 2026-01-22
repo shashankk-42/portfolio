@@ -55,12 +55,14 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`\n🚀 Server running on port ${PORT}`);
-    console.log(`📡 API available at http://localhost:${PORT}/api`);
-    console.log(`💚 Environment: ${process.env.NODE_ENV || 'development'}\n`);
-});
+// Start server only in development (Vercel handles this in production)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`\n🚀 Server running on port ${PORT}`);
+        console.log(`📡 API available at http://localhost:${PORT}/api`);
+        console.log(`💚 Environment: ${process.env.NODE_ENV || 'development'}\n`);
+    });
+}
 
 // Export for serverless (Vercel)
 module.exports = app;
